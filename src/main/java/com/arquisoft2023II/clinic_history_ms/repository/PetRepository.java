@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface PetRepository extends MongoRepository<Pet,String> {
     Optional<Pet> findPetByUsersDBId(String usersDBId);
+    Optional<Long> countPetByUsersDBId(String usersDBId);
 }
