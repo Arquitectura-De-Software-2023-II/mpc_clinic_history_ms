@@ -1,0 +1,7 @@
+server:
+  port: 8080
+spring:
+  data:
+    mongodb:
+      uri: "mongodb+srv://salvarezri:root@united1.58mfhug.mongodb.net/?retryWrites=true&w=majority"
+      database: "arquisoft"
