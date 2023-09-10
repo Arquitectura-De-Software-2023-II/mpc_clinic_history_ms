@@ -1,4 +1,4 @@
-package model;
+package com.arquisoft2023II.clinic_history_ms.model;
 
 public enum AppointmentPriority {
     HIG("hig"),
