@@ -19,7 +19,7 @@ public class PetController {
 
     private final PetService petService;
 
-
+    // Basic CRUD operations to the Pet entity
     @PostMapping()
     public ResponseEntity<Pet> createPet(@RequestBody CreatePetDto createPetDto){
 
@@ -42,4 +42,11 @@ public class PetController {
         Pet pet = petService.updatePetByUsersDBId(usersDBId, updatePetInfoDto);
         return new ResponseEntity<>(pet, HttpStatus.OK);
     }
+    @DeleteMapping(path = "{usersDBId}")
+    public ResponseEntity<HttpMessage> deletePetByUsersDBId(@PathVariable("usersDBId") String usersDBId){
+        petService.deletePetByUsersDBId(usersDBId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    // End of basic CRUD operations to the Pet entity
+
 }

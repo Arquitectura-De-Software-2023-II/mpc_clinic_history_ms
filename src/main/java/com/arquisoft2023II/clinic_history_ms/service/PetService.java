@@ -49,6 +49,15 @@ public class PetService {
         return petRepository.save(petToUpdate);
     }
 
+    public void deletePetByUsersDBId(String usersDBId){
+        Optional<Pet> pet = petRepository.findPetByUsersDBId(usersDBId);
+        if (pet.isEmpty()){
+            throw new IllegalStateException("The pet has not been created");
+        }
+        Pet petToDelete = pet.get();
+        petRepository.deleteById(petToDelete.getId());
+    }
+
     private boolean validatePetByUsersDBId(String usersDBId){
         Optional<Pet> pet= petRepository.findPetByUsersDBId(usersDBId);
         return pet.isEmpty();
