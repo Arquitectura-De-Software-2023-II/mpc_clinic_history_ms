@@ -1,5 +1,6 @@
 package com.arquisoft2023II.clinic_history_ms.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;

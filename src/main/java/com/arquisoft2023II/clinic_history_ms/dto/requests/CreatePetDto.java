@@ -1,19 +1,18 @@
-package com.arquisoft2023II.clinic_history_ms.dto.POST;
+package com.arquisoft2023II.clinic_history_ms.dto.requests;
 
 import com.arquisoft2023II.clinic_history_ms.model.Pet;
 import com.arquisoft2023II.clinic_history_ms.model.PetInfo;
-import com.arquisoft2023II.clinic_history_ms.model.VeterinaryAppointment;
 import lombok.Data;
-
-import java.util.List;
+import lombok.ToString;
 
 @Data
+@ToString
 public class CreatePetDto {
     private  String usersDBId;
     private PetInfo petInfo;
 
     public Pet toPet(){
-        System.out.println(petInfo.toString());
+        System.out.println(this.toString());
         return new Pet().setUsersDBId(usersDBId).setPetInfo(petInfo);
     }
 }
