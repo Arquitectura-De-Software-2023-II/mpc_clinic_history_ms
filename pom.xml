@@ -61,6 +61,9 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>
+			clinic_history_ms
+		</finalName>
 	</build>
 
 </project>

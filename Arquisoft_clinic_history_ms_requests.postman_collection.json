@@ -1,0 +1,285 @@
+{
+	"info": {
+		"_postman_id": "7122b273-3e1a-4676-aaf0-306b00664787",
+		"name": "Arquisoft_clinic_history_ms_requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25606225"
+	},
+	"item": [
+		{
+			"name": "Basic requests",
+			"item": [
+				{
+					"name": "Create pet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usersDBId\":\"91\",\r\n    \"petInfo\": {\r\n        \"weight\": 5.5,\r\n        \"age\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update info by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"weight\": 2.2,\r\n    \"age\": 4\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pet/asd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pet",
+								"asd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all pets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get pet by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/pet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete pet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pet/asd",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pet",
+								"asd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointments requests",
+			"item": [
+				{
+					"name": "Insert Appointment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"doctorId\": \"3\",\r\n    \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus, risus vitae ullamcorper fringilla, lacus massa consequat enim, in pretium lacus nunc sit amet ante. Sed luctus sapien diam, quis fringilla mi imperdiet nec. Morbi sodales elementum suscipit. Quisque et consectetur ipsum. Phasellus ut commodo erat. Aliquam nec eleifend elit. Phasellus tincidunt orci ligula, mollis scelerisque nisi blandit non. Etiam eu orci purus. Proin nec nunc et dui vestibulum fermentum et imperdiet purus. Nulla a lobortis dolor. Curabitur eros nisi, molestie sit amet molestie quis, semper vitae dolor.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pet/1/veterinaryAppointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pet",
+								"1",
+								"veterinaryAppointment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all pet Appointments",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pet/1/veterinaryAppointment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pet",
+								"1",
+								"veterinaryAppointment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all pets by doctorId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"doctorId\": \"3\",\r\n    \"description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi cursus, risus vitae ullamcorper fringilla, lacus massa consequat enim, in pretium lacus nunc sit amet ante. Sed luctus sapien diam, quis fringilla mi imperdiet nec. Morbi sodales elementum suscipit. Quisque et consectetur ipsum. Phasellus ut commodo erat. Aliquam nec eleifend elit. Phasellus tincidunt orci ligula, mollis scelerisque nisi blandit non. Etiam eu orci purus. Proin nec nunc et dui vestibulum fermentum et imperdiet purus. Nulla a lobortis dolor. Curabitur eros nisi, molestie sit amet molestie quis, semper vitae dolor.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pet/veterinaryAppointment/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pet",
+								"veterinaryAppointment",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a prescription",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"abcd\",\r\n    \"startDate\": \"2022-09-11T00:00:00\",\r\n    \"endDate\": \"2023-09-10T00:00:00\",\r\n    \"description\": \"asdfasdfasdf asdf asdf asdf \",\r\n    \"periodicity\": \"1 pasta diaria\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/pet/asd/prescriptionDrug?id=2023-09-11T03-33-59-411009",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"pet",
+								"asd",
+								"prescriptionDrug"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "2023-09-11T03-33-59-411009"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
