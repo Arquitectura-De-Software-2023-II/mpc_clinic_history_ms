@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/api/pet")
 public class PetController {
 
-    private final PetService petService;
+        private final PetService petService;
 
     // Basic CRUD operations to the Pet entity
     @PostMapping()

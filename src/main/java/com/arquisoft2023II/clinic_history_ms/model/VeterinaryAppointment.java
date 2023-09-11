@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
+@Accessors(chain = true)
 public class VeterinaryAppointment {
     @Indexed
     private LocalDateTime appointmentDate;

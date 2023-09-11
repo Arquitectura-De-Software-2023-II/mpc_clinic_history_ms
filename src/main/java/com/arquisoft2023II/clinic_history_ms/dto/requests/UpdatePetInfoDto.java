@@ -6,6 +6,7 @@ import com.arquisoft2023II.clinic_history_ms.model.Vaccine;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.Collections;
 import java.util.List;
 
 @Data
@@ -16,8 +17,14 @@ public class UpdatePetInfoDto {
     private List<Disease> diseases;
     private List<Vaccine> vaccines;
 
-     public PetInfo toPetInfo(){
-         System.out.println("UpdatePetInfoDto: " + this.toString());
+    public PetInfo toPetInfo(){
+        if (this.diseases == null) {
+            this.diseases = Collections.emptyList();
+        }
+        if (this.vaccines == null) {
+            this.vaccines = Collections.emptyList();
+        }
+        System.out.println("UpdatePetInfoDto: " + this.toString());
         return new PetInfo().setAge(age).setWeight(weight).setDiseases(diseases).setVaccines(vaccines);
     }
 }
