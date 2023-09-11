@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 @ToString
@@ -16,7 +17,9 @@ import java.util.List;
 @NoArgsConstructor
 @Accessors(chain = true)
 public class VeterinaryAppointment {
+
     @Indexed
+    private String id;
     private LocalDateTime appointmentDate;
     @Indexed
     private String doctorId;
@@ -28,6 +31,9 @@ public class VeterinaryAppointment {
         this.appointmentDate = appointmentDate;
         this.doctorId = doctorId;
         this.description = description;
+        this.prescriptionDrugs = Collections.emptyList();
+        this.scheduledAppointments = Collections.emptyList();
+        this.id = appointmentDate.toString().replace(":", "-").replace(".", "-");
     }
 
 }

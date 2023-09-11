@@ -24,7 +24,9 @@ public class CreateVeterinaryAppointmentDto {
         if( scheduledAppointments == null) {
             scheduledAppointments = Collections.emptyList();
         }
-        return new VeterinaryAppointment().setAppointmentDate(LocalDateTime.now()).setDoctorId(doctorId).setDescription(description).setPrescriptionDrugs(prescriptionDrugs).setScheduledAppointments(scheduledAppointments);
+        LocalDateTime now = LocalDateTime.now();
+        String id = now.toString().replace(":", "-").replace(".", "-");
+        return new VeterinaryAppointment().setAppointmentDate(now).setId(id).setDoctorId(doctorId).setDescription(description).setPrescriptionDrugs(prescriptionDrugs).setScheduledAppointments(scheduledAppointments);
     }
 
 }
