@@ -30,7 +30,7 @@ public class ClinicHistoryMsApplication {
 		return args -> {
 			List<Disease> diseases = List.of(
 					new Disease(
-							"disease1",
+							"disease5",
 							LocalDateTime.now(),
 							"lorem ipsum"
 					),
@@ -54,13 +54,13 @@ public class ClinicHistoryMsApplication {
 							5
 					),
 					new Vaccine(
-							"vaccine2",
+							"vaccine5",
 							LocalDateTime.now(),
 							"lorem ipsum",
 							5
 					),
 					new Vaccine(
-							"vaccine3",
+							"vaccine2",
 							LocalDateTime.now(),
 							"lorem ipsum",
 							5
@@ -76,21 +76,21 @@ public class ClinicHistoryMsApplication {
 			List<VeterinaryAppointment> veterinaryAppointments = List.of(
 					new VeterinaryAppointment(
 							LocalDateTime.now(),
-							"dr1id",
-							"lorem ipsum"
-					),
-					new VeterinaryAppointment(
-							LocalDateTime.now(),
 							"dr2id",
 							"lorem ipsum"
 					),
 					new VeterinaryAppointment(
-							LocalDateTime.now(),
-							"dr3id",
+							LocalDateTime.now().minusDays(1),
+							"dr1id",
+							"lorem ipsum"
+					),
+					new VeterinaryAppointment(
+							LocalDateTime.now().minusMonths(1),
+							"dr5id",
 							"lorem ipsum"
 					)
 			);
-			String usersDBId = "asd";
+			String usersDBId = "pet4";
 			Pet pet = new Pet(
 					usersDBId,
 					petInfo,
