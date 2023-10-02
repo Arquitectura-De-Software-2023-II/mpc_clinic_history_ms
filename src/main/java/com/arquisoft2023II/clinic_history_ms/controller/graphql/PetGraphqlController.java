@@ -30,9 +30,8 @@ public class PetGraphqlController {
     }
 
     @QueryMapping()
-    public ResponseEntity<Pet> getPetByUsersDBId(@Argument String usersDBId){
-        Pet pet = petService.getPetByUsersDBId(usersDBId);
-        return new ResponseEntity<>(pet, HttpStatus.OK);
+    public Pet getPetByUsersDBId(@Argument String usersDBId){
+        return petService.getPetByUsersDBId(usersDBId);
     }
     @QueryMapping()
     public List<Pet> getAllPets(){

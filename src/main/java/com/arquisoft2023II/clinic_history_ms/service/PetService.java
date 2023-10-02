@@ -2,6 +2,8 @@ package com.arquisoft2023II.clinic_history_ms.service;
 
 import com.arquisoft2023II.clinic_history_ms.dto.requests.CreatePetDto;
 import com.arquisoft2023II.clinic_history_ms.dto.requests.UpdatePetInfoDto;
+import com.arquisoft2023II.clinic_history_ms.exceptions.validation.PetAlreadyExistsException;
+import com.arquisoft2023II.clinic_history_ms.exceptions.validation.PetNotFoundException;
 import com.arquisoft2023II.clinic_history_ms.model.Pet;
 import com.arquisoft2023II.clinic_history_ms.model.PetInfo;
 import com.arquisoft2023II.clinic_history_ms.repository.PetRepository;
@@ -18,12 +20,12 @@ public class PetService {
     private final PetRepository petRepository;
 
     public Pet createPet(CreatePetDto createPetDto) {
-
-        if (validatePetByUsersDBId(createPetDto.getUsersDBId())){
+        String usersDBId = createPetDto.getUsersDBId();
+        if (validatePetByUsersDBId(usersDBId)){
             return petRepository.insert(createPetDto.toPet());
         }
         else {
-            throw new IllegalStateException("The pet has been already created");
+            throw new PetAlreadyExistsException(usersDBId);
         }
     }
 
@@ -32,9 +34,10 @@ public class PetService {
     }
 
     public Pet getPetByUsersDBId(String usersDBId){
+        System.out.println(usersDBId);
         Optional<Pet> pet = petRepository.findPetByUsersDBId(usersDBId);
         if (pet.isEmpty()){
-            throw new IllegalStateException("The pet has not been created");
+            throw new PetNotFoundException(usersDBId);
         }
         return pet.get();
     }
@@ -43,7 +46,7 @@ public class PetService {
         PetInfo updatedInfo = updatePetInfoDto.toPetInfo();
         Optional<Pet> pet = petRepository.findPetByUsersDBId(usersDBid);
         if (pet.isEmpty()){
-            throw new IllegalStateException("The pet has not been created");
+            throw new PetNotFoundException(usersDBid);
         }
         Pet petToUpdate = pet.get().setPetInfo(updatedInfo);
         return petRepository.save(petToUpdate);
@@ -52,7 +55,7 @@ public class PetService {
     public void deletePetByUsersDBId(String usersDBId){
         Optional<Pet> pet = petRepository.findPetByUsersDBId(usersDBId);
         if (pet.isEmpty()){
-            throw new IllegalStateException("The pet has not been created");
+            throw new PetNotFoundException(usersDBId);
         }
         Pet petToDelete = pet.get();
         petRepository.deleteById(petToDelete.getId());

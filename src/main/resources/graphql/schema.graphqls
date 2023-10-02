@@ -1,6 +1,14 @@
 type Query {
+    ## Pets Queries
     getAllPets: [Pet]
 }
+extend type Query {
+    getPetByUsersDBId(usersDBId: String !): Pet
+}
+
+
+
+## Query Types
 type Pet {
     id: String
     usersDBId: String
@@ -49,3 +57,5 @@ enum AppointmentPriority{
     medium
     low
 }
+
+## Mutation Types
