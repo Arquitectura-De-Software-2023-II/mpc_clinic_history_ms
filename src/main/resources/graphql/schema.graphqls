@@ -1,0 +1,51 @@
+type Query {
+    getAllPets: [Pet]
+}
+type Pet {
+    id: String
+    usersDBId: String
+    PetInfo: PetInfo
+    veterinaryAppointments: [VeterinaryAppointment]
+}
+type PetInfo{
+    weight: Float
+    age: Int
+    diseases: [Disease]
+    vaccines: [Vaccine]
+}
+type Disease{
+    name: String
+    description: String
+    discoveryDate: String
+}
+type Vaccine{
+    name: String
+    vaccination_date: String
+    description: String
+    duration: Int
+}
+type VeterinaryAppointment{
+    id: String
+    appointmentDate: String
+    doctorId: String
+    description: String
+    prescriptionDrugs: [PrescriptionDrug]
+    scheduledAppointments: [ScheduledAppointment]
+}
+type PrescriptionDrug{
+    name: String
+    startDate: String
+    endDate: String
+    description: String
+    periodicity: String
+}
+type ScheduledAppointment{
+    specialist: String
+    doctorId: String
+    priority: AppointmentPriority
+}
+enum AppointmentPriority{
+    hig
+    medium
+    low
+}

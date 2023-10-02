@@ -2,10 +2,13 @@ server:
   port: 8080
   error:
     include-message: always
-
 spring:
   data:
     mongodb:
       uri: "mongodb+srv://salvarezri:root@united1.58mfhug.mongodb.net/?retryWrites=true&w=majority"
       database: "UNited1"
       auto-index-creation: true
+  graphql:
+    path: /graphql
+    graphiql:
+      path: /graphiql
