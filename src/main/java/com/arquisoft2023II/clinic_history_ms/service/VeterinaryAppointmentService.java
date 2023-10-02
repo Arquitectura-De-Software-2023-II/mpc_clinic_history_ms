@@ -2,6 +2,7 @@ package com.arquisoft2023II.clinic_history_ms.service;
 
 import com.arquisoft2023II.clinic_history_ms.dto.requests.CreateVeterinaryAppointmentDto;
 import com.arquisoft2023II.clinic_history_ms.dto.requests.InsertPrescriptionDrugDto;
+import com.arquisoft2023II.clinic_history_ms.exceptions.DataFetchingException;
 import com.arquisoft2023II.clinic_history_ms.model.Pet;
 import com.arquisoft2023II.clinic_history_ms.model.PrescriptionDrug;
 import com.arquisoft2023II.clinic_history_ms.model.VeterinaryAppointment;
@@ -18,7 +19,7 @@ public class VeterinaryAppointmentService {
 
     private final PetRepository petRepository;
 
-    public Pet AddAppointmentToPet(String usersDBId, CreateVeterinaryAppointmentDto VeterinaryAppointmentDto){
+    public VeterinaryAppointment AddAppointmentToPet(String usersDBId, CreateVeterinaryAppointmentDto VeterinaryAppointmentDto){
         Optional<Pet> pet = petRepository.findPetByUsersDBId(usersDBId);
         if (pet.isEmpty()){
             throw new IllegalStateException("The pet has not been created");
@@ -26,7 +27,12 @@ public class VeterinaryAppointmentService {
         VeterinaryAppointment veterinaryAppointment = VeterinaryAppointmentDto.toVeterinaryAppointment();
         Pet petToSave = pet.get();
         petToSave.getVeterinaryAppointments().add(veterinaryAppointment);
-        return petRepository.save(petToSave);
+        try{
+            petRepository.save(petToSave);
+        }catch (Exception e){
+            throw new DataFetchingException("The pet has not been updated");
+        }
+        return veterinaryAppointment;
     }
 
     public List<VeterinaryAppointment> getVeterinaryAppointments(String usersDBId){

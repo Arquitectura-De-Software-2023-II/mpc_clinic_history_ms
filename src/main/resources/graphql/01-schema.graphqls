@@ -1,12 +1,20 @@
-## Pets basic CRUD operations
 type Query {
+    ## Pets basic CRUD operations
     getAllPets: [Pet]
     getPetByUsersDBId(usersDBId: String !): Pet
+    ## Appointment operations
+    getVeterinaryAppointments(usersDBId: String!): [VeterinaryAppointment]
+    getPetsByDoctorId(doctorId: String!): [Pet]
 }
 type Mutation{
+    ## Pets basic CRUD operations
     createPet(createPetDto: CreatePetDto!): Pet
     updatePetByUsersDBId(usersDBId: String!, updatePetInfoDto: PetInfoDto!): Pet
     deletePetByUsersDBId(usersDBId: String!): Pet
+    ## Appointment operations
+    AddAppointment(usersDBId: String!, veterinaryAppointmentDto:CreateVeterinaryAppointmentDto): VeterinaryAppointment
+    AddPrescriptionToPet(usersDBId: String!, appointmentId: String!, insertPrescriptionDrugDto: InsertPrescriptionDrugDto!): VeterinaryAppointment
+
 }
 
 ## Query Types
@@ -80,4 +88,23 @@ input VaccineDto{
     vaccination_date: String
     description: String
     duration: Int
+}
+input CreateVeterinaryAppointmentDto{
+    doctorId: String!
+    description: String
+}
+input InsertPrescriptionDrugDto{
+    name: String!
+    startDate: DateDto!
+    endDate: DateDto!
+    description: String
+    periodicity: String
+}
+input DateDto{
+    year: Int
+    month: Int
+    day: Int
+    hour: Int
+    minute: Int
+    second: Int
 }
