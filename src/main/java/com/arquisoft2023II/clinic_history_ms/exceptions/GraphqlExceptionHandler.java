@@ -13,12 +13,6 @@ public class GraphqlExceptionHandler extends DataFetcherExceptionResolverAdapter
 
     @Override
     protected GraphQLError resolveToSingleError(Throwable ex, DataFetchingEnvironment env) {
-        System.out.println(ErrorType.ValidationError);
-        System.out.println(ErrorType.ExecutionAborted);
-        System.out.println(ErrorType.InvalidSyntax);
-        System.out.println(ErrorType.DataFetchingException);
-        System.out.println(ErrorType.NullValueInNonNullableField);
-        System.out.println(ErrorType.OperationNotSupported);
 
         if (ex instanceof ValidationErrorException){
             return GraphqlErrorBuilder.newError()

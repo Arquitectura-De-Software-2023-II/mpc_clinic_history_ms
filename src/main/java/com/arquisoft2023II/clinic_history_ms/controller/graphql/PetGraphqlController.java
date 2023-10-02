@@ -23,10 +23,9 @@ public class PetGraphqlController {
 
     // Basic CRUD operations to the Pet entity
     @MutationMapping
-    public ResponseEntity<Pet> createPet(@Argument CreatePetDto createPetDto){
+    public Pet createPet(@Argument CreatePetDto createPetDto){
 
-        Pet petCreated = petService.createPet(createPetDto);
-        return new ResponseEntity<>(petCreated, HttpStatus.CREATED);
+        return petService.createPet(createPetDto);
     }
 
     @QueryMapping()
@@ -39,14 +38,13 @@ public class PetGraphqlController {
         return petService.getAllPets();
     }
     @MutationMapping()
-    public ResponseEntity<Pet> updatePetByUsersDBId(@Argument String usersDBId, @Argument UpdatePetInfoDto updatePetInfoDto){
-        Pet pet = petService.updatePetByUsersDBId(usersDBId, updatePetInfoDto);
-        return new ResponseEntity<>(pet, HttpStatus.OK);
+    public Pet updatePetByUsersDBId(@Argument String usersDBId, @Argument UpdatePetInfoDto updatePetInfoDto){
+        return petService.updatePetByUsersDBId(usersDBId, updatePetInfoDto);
     }
     @MutationMapping()
-    public ResponseEntity<HttpMessage> deletePetByUsersDBId(@Argument String usersDBId){
-        petService.deletePetByUsersDBId(usersDBId);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public Pet deletePetByUsersDBId(@Argument String usersDBId){
+        return petService.deletePetByUsersDBId(usersDBId);
+
     }
     // End of basic CRUD operations to the Pet entity
 

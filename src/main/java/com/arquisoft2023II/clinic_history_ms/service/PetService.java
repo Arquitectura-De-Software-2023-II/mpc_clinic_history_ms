@@ -2,6 +2,7 @@ package com.arquisoft2023II.clinic_history_ms.service;
 
 import com.arquisoft2023II.clinic_history_ms.dto.requests.CreatePetDto;
 import com.arquisoft2023II.clinic_history_ms.dto.requests.UpdatePetInfoDto;
+import com.arquisoft2023II.clinic_history_ms.exceptions.DataFetchingException;
 import com.arquisoft2023II.clinic_history_ms.exceptions.validation.PetAlreadyExistsException;
 import com.arquisoft2023II.clinic_history_ms.exceptions.validation.PetNotFoundException;
 import com.arquisoft2023II.clinic_history_ms.model.Pet;
@@ -22,7 +23,13 @@ public class PetService {
     public Pet createPet(CreatePetDto createPetDto) {
         String usersDBId = createPetDto.getUsersDBId();
         if (validatePetByUsersDBId(usersDBId)){
-            return petRepository.insert(createPetDto.toPet());
+            Pet pet = createPetDto.toPet();
+            try{
+                System.out.println(petRepository.insert(pet));
+                return pet;
+            }catch (Exception e){
+                throw new DataFetchingException(e.getMessage());
+            }
         }
         else {
             throw new PetAlreadyExistsException(usersDBId);
@@ -52,13 +59,14 @@ public class PetService {
         return petRepository.save(petToUpdate);
     }
 
-    public void deletePetByUsersDBId(String usersDBId){
+    public Pet deletePetByUsersDBId(String usersDBId){
         Optional<Pet> pet = petRepository.findPetByUsersDBId(usersDBId);
         if (pet.isEmpty()){
             throw new PetNotFoundException(usersDBId);
         }
         Pet petToDelete = pet.get();
         petRepository.deleteById(petToDelete.getId());
+        return petToDelete;
     }
 
     private boolean validatePetByUsersDBId(String usersDBId){

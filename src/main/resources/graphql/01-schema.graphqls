@@ -1,12 +1,12 @@
+## Pets basic CRUD operations
 type Query {
-    ## Pets Queries
     getAllPets: [Pet]
-}
-extend type Query {
     getPetByUsersDBId(usersDBId: String !): Pet
 }
+type Mutation{
+    createPet(createPetDto: CreatePetDto!): Pet
 
-
+}
 
 ## Query Types
 type Pet {
@@ -59,3 +59,24 @@ enum AppointmentPriority{
 }
 
 ## Mutation Types
+input CreatePetDto {
+    usersDBId: String!
+    PetInfo: PetInfoDto
+}
+input PetInfoDto{
+    weight: Float
+    age: Int
+    diseases: [DiseaseDto]
+    vaccines: [VaccineDto]
+}
+input DiseaseDto{
+    name: String
+    description: String
+    discoveryDate: String
+}
+input VaccineDto{
+    name: String
+    vaccination_date: String
+    description: String
+    duration: Int
+}
