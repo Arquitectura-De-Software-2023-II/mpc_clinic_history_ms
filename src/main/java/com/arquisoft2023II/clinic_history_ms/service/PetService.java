@@ -50,6 +50,7 @@ public class PetService {
     }
 
     public Pet updatePetByUsersDBId(String usersDBid, UpdatePetInfoDto updatePetInfoDto){
+        System.out.println(usersDBid);
         PetInfo updatedInfo = updatePetInfoDto.toPetInfo();
         Optional<Pet> pet = petRepository.findPetByUsersDBId(usersDBid);
         if (pet.isEmpty()){

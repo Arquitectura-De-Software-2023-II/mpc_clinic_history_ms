@@ -5,7 +5,8 @@ type Query {
 }
 type Mutation{
     createPet(createPetDto: CreatePetDto!): Pet
-
+    updatePetByUsersDBId(usersDBId: String!, updatePetInfoDto: PetInfoDto!): Pet
+    deletePetByUsersDBId(usersDBId: String!): Pet
 }
 
 ## Query Types
