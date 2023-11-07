@@ -1,5 +1,6 @@
 package com.arquisoft2023II.clinic_history_ms.service;
 
+import com.arquisoft2023II.clinic_history_ms.dto.requests.AddVaccineDto;
 import com.arquisoft2023II.clinic_history_ms.dto.requests.CreatePetDto;
 import com.arquisoft2023II.clinic_history_ms.dto.requests.UpdatePetInfoDto;
 import com.arquisoft2023II.clinic_history_ms.exceptions.DataFetchingException;
@@ -7,6 +8,7 @@ import com.arquisoft2023II.clinic_history_ms.exceptions.validation.PetAlreadyExi
 import com.arquisoft2023II.clinic_history_ms.exceptions.validation.PetNotFoundException;
 import com.arquisoft2023II.clinic_history_ms.model.Pet;
 import com.arquisoft2023II.clinic_history_ms.model.PetInfo;
+import com.arquisoft2023II.clinic_history_ms.model.Vaccine;
 import com.arquisoft2023II.clinic_history_ms.repository.PetRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -69,6 +71,20 @@ public class PetService {
         Pet petToDelete = pet.get();
         petRepository.deleteById(petToDelete.getId());
         return petToDelete;
+    }
+    public Pet addVaccineToPet ( String usersDBId, AddVaccineDto vaccine){
+        Optional<Pet> pet = petRepository.findPetByUsersDBId(usersDBId);
+        if (pet.isEmpty()){
+            throw new PetNotFoundException(usersDBId);
+        }
+        Pet petToUpdate = pet.get();
+        petToUpdate.getPetInfo().getVaccines().add(vaccine.toVaccine());
+        try{
+            petRepository.save(petToUpdate);
+        }catch (Exception e){
+            throw new DataFetchingException("The pet has not been updated");
+        }
+        return petToUpdate;
     }
 
     private boolean validatePetByUsersDBId(String usersDBId){

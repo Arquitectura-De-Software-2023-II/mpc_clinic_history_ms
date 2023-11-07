@@ -14,6 +14,8 @@ type Mutation{
     ## Appointment operations
     AddAppointment(usersDBId: String!, veterinaryAppointmentDto:CreateVeterinaryAppointmentDto): VeterinaryAppointment
     AddPrescriptionToPet(usersDBId: String!, appointmentId: String!, insertPrescriptionDrugDto: InsertPrescriptionDrugDto!): VeterinaryAppointment
+    ## Add vaccine to pet
+    addVaccineToPet(usersDBId: String!, vaccine: VaccineDto!): Pet
 
 }
 
@@ -85,7 +87,7 @@ input DiseaseDto{
 }
 input VaccineDto{
     name: String
-    vaccination_date: String
+    vaccination_year: Int
     description: String
     duration: Int
 }

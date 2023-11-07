@@ -1,5 +1,6 @@
 package com.arquisoft2023II.clinic_history_ms.controller.graphql;
 
+import com.arquisoft2023II.clinic_history_ms.dto.requests.AddVaccineDto;
 import com.arquisoft2023II.clinic_history_ms.dto.requests.CreatePetDto;
 import com.arquisoft2023II.clinic_history_ms.dto.requests.UpdatePetInfoDto;
 import com.arquisoft2023II.clinic_history_ms.model.Pet;
@@ -47,5 +48,10 @@ public class PetGraphqlController {
 
     }
     // End of basic CRUD operations to the Pet entity
+    @MutationMapping()
+    public Pet addVaccineToPet(@Argument String usersDBId, @Argument AddVaccineDto vaccine){
+        System.out.println("addVaccineToPet");
+        return petService.addVaccineToPet(usersDBId, vaccine);
+    }
 
 }

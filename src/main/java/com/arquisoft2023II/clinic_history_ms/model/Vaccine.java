@@ -14,7 +14,7 @@ import java.util.Date;
 public class Vaccine {
     @Indexed
     private String name;
-    private LocalDateTime vaccination_date;
+    private int vaccination_year;
     private String description;
     private int duration;
 }
