@@ -57,6 +57,7 @@ public class PetService {
             throw new PetNotFoundException(usersDBid);
         }
         Pet petToUpdate = pet.get().setPetInfo(updatedInfo);
+        System.out.println(petToUpdate);
         return petRepository.save(petToUpdate);
     }
 
