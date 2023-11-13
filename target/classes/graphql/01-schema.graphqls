@@ -1,0 +1,112 @@
+type Query {
+    ## Pets basic CRUD operations
+    getAllPets: [Pet]
+    getPetByUsersDBId(usersDBId: String !): Pet
+    ## Appointment operations
+    getVeterinaryAppointments(usersDBId: String!): [VeterinaryAppointment]
+    getPetsByDoctorId(doctorId: String!): [Pet]
+}
+type Mutation{
+    ## Pets basic CRUD operations
+    createPet(createPetDto: CreatePetDto!): Pet
+    updatePetByUsersDBId(usersDBId: String!, updatePetInfoDto: PetInfoDto!): Pet
+    deletePetByUsersDBId(usersDBId: String!): Pet
+    ## Appointment operations
+    AddAppointment(usersDBId: String!, veterinaryAppointmentDto:CreateVeterinaryAppointmentDto): VeterinaryAppointment
+    AddPrescriptionToPet(usersDBId: String!, appointmentId: String!, insertPrescriptionDrugDto: InsertPrescriptionDrugDto!): VeterinaryAppointment
+    ## Add vaccine to pet
+    addVaccineToPet(usersDBId: String!, vaccine: VaccineDto!): Pet
+
+}
+
+## Query Types
+type Pet {
+    id: String
+    usersDBId: String
+    PetInfo: PetInfo
+    veterinaryAppointments: [VeterinaryAppointment]
+}
+type PetInfo{
+    weight: Float
+    age: Int
+    diseases: [Disease]
+    vaccines: [Vaccine]
+}
+type Disease{
+    name: String
+    description: String
+    discoveryDate: String
+}
+type Vaccine{
+    name: String
+    vaccination_date: String
+    description: String
+    duration: Int
+}
+type VeterinaryAppointment{
+    id: String
+    appointmentDate: String
+    doctorId: String
+    description: String
+    prescriptionDrugs: [PrescriptionDrug]
+    scheduledAppointments: [ScheduledAppointment]
+}
+type PrescriptionDrug{
+    name: String
+    startDate: String
+    endDate: String
+    description: String
+    periodicity: String
+}
+type ScheduledAppointment{
+    specialist: String
+    doctorId: String
+    priority: AppointmentPriority
+}
+enum AppointmentPriority{
+    hig
+    medium
+    low
+}
+
+## Mutation Types
+input CreatePetDto {
+    usersDBId: String!
+    PetInfo: PetInfoDto
+}
+input PetInfoDto{
+    weight: Float
+    age: Int
+    diseases: [DiseaseDto]
+    vaccines: [VaccineDto]
+}
+input DiseaseDto{
+    name: String
+    description: String
+    discoveryDate: String
+}
+input VaccineDto{
+    name: String
+    vaccination_year: Int
+    description: String
+    duration: Int
+}
+input CreateVeterinaryAppointmentDto{
+    doctorId: String!
+    description: String
+}
+input InsertPrescriptionDrugDto{
+    name: String!
+    startDate: DateDto!
+    endDate: DateDto!
+    description: String
+    periodicity: String
+}
+input DateDto{
+    year: Int
+    month: Int
+    day: Int
+    hour: Int
+    minute: Int
+    second: Int
+}
