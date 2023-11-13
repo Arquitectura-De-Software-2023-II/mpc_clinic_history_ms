@@ -1,4 +1,4 @@
-package com.arquisoft2023II.clinic_history_ms.controller;
+package com.arquisoft2023II.clinic_history_ms.controller.REST;
 
 import com.arquisoft2023II.clinic_history_ms.dto.requests.CreateVeterinaryAppointmentDto;
 import com.arquisoft2023II.clinic_history_ms.dto.requests.InsertPrescriptionDrugDto;
@@ -19,9 +19,9 @@ public class VeterinaryAppointmentController {
     private final VeterinaryAppointmentService veterinaryAppointmentService;
 
     @PostMapping(path = "{usersDBId}/veterinaryAppointment")
-    public ResponseEntity<Pet> AddDiseaseToPet(@PathVariable("usersDBId") String usersDBId, @RequestBody CreateVeterinaryAppointmentDto veterinaryAppointmentDto){
-        Pet pet = veterinaryAppointmentService.AddAppointmentToPet(usersDBId, veterinaryAppointmentDto);
-        return new ResponseEntity<>(pet, HttpStatus.OK);
+    public ResponseEntity<VeterinaryAppointment> AddDiseaseToPet(@PathVariable("usersDBId") String usersDBId, @RequestBody CreateVeterinaryAppointmentDto veterinaryAppointmentDto){
+        VeterinaryAppointment appointment = veterinaryAppointmentService.AddAppointmentToPet(usersDBId, veterinaryAppointmentDto);
+        return new ResponseEntity<>(appointment, HttpStatus.OK);
     }
     @GetMapping(path = "{usersDBId}/veterinaryAppointment")
     public ResponseEntity<List<VeterinaryAppointment>> getVeterinaryAppointments(@PathVariable("usersDBId") String usersDBId){

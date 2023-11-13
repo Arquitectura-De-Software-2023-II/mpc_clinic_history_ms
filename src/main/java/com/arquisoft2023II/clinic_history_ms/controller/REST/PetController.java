@@ -1,4 +1,4 @@
-package com.arquisoft2023II.clinic_history_ms.controller;
+package com.arquisoft2023II.clinic_history_ms.controller.REST;
 
 import com.arquisoft2023II.clinic_history_ms.dto.requests.UpdatePetInfoDto;
 import com.arquisoft2023II.clinic_history_ms.model.Pet;

@@ -3,9 +3,12 @@ package com.arquisoft2023II.clinic_history_ms.dto.requests;
 import com.arquisoft2023II.clinic_history_ms.model.Disease;
 import com.arquisoft2023II.clinic_history_ms.model.PetInfo;
 import com.arquisoft2023II.clinic_history_ms.model.Vaccine;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.data.mongodb.core.index.Indexed;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,3 +31,4 @@ public class UpdatePetInfoDto {
         return new PetInfo().setAge(age).setWeight(weight).setDiseases(diseases).setVaccines(vaccines);
     }
 }
+

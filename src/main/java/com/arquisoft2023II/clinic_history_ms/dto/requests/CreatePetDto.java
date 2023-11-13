@@ -16,6 +16,9 @@ public class CreatePetDto {
 
     public Pet toPet(){
         System.out.println(this.toString());
+        if (this.petInfo == null) {
+            this.petInfo = new PetInfo();
+        }
         if (this.petInfo.getDiseases() == null) {
             this.petInfo.setDiseases(Collections.emptyList());
         }

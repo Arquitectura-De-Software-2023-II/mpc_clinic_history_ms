@@ -49,19 +49,19 @@ public class ClinicHistoryMsApplication {
 			List<Vaccine> vaccines = List.of(
 					new Vaccine(
 							"vaccine1",
-							LocalDateTime.now(),
+							LocalDateTime.now().getYear(),
 							"lorem ipsum",
 							5
 					),
 					new Vaccine(
 							"vaccine5",
-							LocalDateTime.now(),
+							LocalDateTime.now().getYear(),
 							"lorem ipsum",
 							5
 					),
 					new Vaccine(
 							"vaccine2",
-							LocalDateTime.now(),
+							LocalDateTime.now().getYear(),
 							"lorem ipsum",
 							5
 					)
